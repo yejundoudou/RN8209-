@@ -87,10 +87,10 @@ u32 RN8209_ReadData(u8 address)
 	
 //	data=0;//下次来读的时候，就先清零
 	
+	SCLK_L;	
 	SCSN_L;
-//	SCLK_L;
-	SCLK_H;
-  delay_ms(1);	   
+	delay_ms(1);	 
+//	SCLK_H;    
 	for(i=0;i<8;i++)/*发送操作码和地址*/  
    {
 	   SCLK_H;//主机在高电平写命令字节
@@ -102,15 +102,15 @@ u32 RN8209_ReadData(u8 address)
 	    {	
         SDI_L;
 	    }
-	   delay_ms(1);
-     SCLK_L;/*从设备下降沿接收数据*/  
+	   delay_ms(1);//然后等1毫秒，等着从机读取。
+     SCLK_L;//从设备下降沿接收数据，这是读取数据的正中央  
 	   delay_ms(1);
      address_s<<= 1; //-------这里已经改变了变量的值，下面又要调用，就不行---------------------------
    } 
-	
-   delay_ms(2);
-	 SDI_L;     //--下面是产生接收的时钟脉冲---//
-	 delay_ms(1);
+	 SDI_L; //读取完之后，数据保持低电平 
+   delay_ms(1);//间隔时间t1应该大于半个时钟周期。1+1
+	 
+/*------------------下面是产生接收的时钟脉冲------------------*/
 	switch(address)
 	{
 		case 0x07:	 
@@ -119,11 +119,11 @@ u32 RN8209_ReadData(u8 address)
 		case 0x41:
 		case 0x42:
 		case 0x43://-------------------------------------------寄存器长度为1-------------------------//
-		SCLK_H;//从机在高电平将数据输出
 		for(i=0;i<8;i++)
 		 {
-		   delay_ms(1);//等待从机放好数据
-		   SCLK_L;		//一个下降沿后，数据已经准备好了
+			 SCLK_H;				//从机在高电平将数据输出
+		   delay_ms(1); 	//等待从机放好数据
+		   SCLK_L;				//一个下降沿后，数据已经准备好了
 		   if((GPIO_ReadInputDataBit(GPIOB, GPIO_Pin_14)))//问题：为什么直接用SDO 不行呢?
 		    {
 					data<<=1;
@@ -135,14 +135,12 @@ u32 RN8209_ReadData(u8 address)
 		    	data&=0xFFFFFFFE;				
 		    }	
 				delay_ms(1);
-				SCLK_H;	
 		 }
-		SCLK_L;
-		delay_ms(2);
+		delay_ms(1);
 		SCSN_H;
+		delay_ms(2);
 		return(data);
-//		break;----------------有了return就不用返回啦
-			
+	
 		case 0x00:
 		case 0x01:
 		case 0x02:	
@@ -169,16 +167,15 @@ u32 RN8209_ReadData(u8 address)
 		case 0x21:
 		case 0x25:	
 		case 0x45://----------------------------------------寄存器长度为2-------------------------------//
-		SCLK_H;//从机在高电平将数据输出
-		for(i=0;i<16;i++)
+		for(i=0;i<8;i++)
 		 {
-		   delay_ms(1);//等待从机放好数据
-		   SCLK_L;		//一个下降沿后，数据已经准备好了
+			 SCLK_H;				//从机在高电平将数据输出
+		   delay_ms(1); 	//等待从机放好数据
+		   SCLK_L;				//一个下降沿后，数据已经准备好了
 		   if((GPIO_ReadInputDataBit(GPIOB, GPIO_Pin_14)))//问题：为什么直接用SDO 不行呢?
 		    {
 					data<<=1;
-		    	data|=0x00000001;
-					
+		    	data|=0x00000001;					
 		    }
 		   else
 		    {
@@ -186,13 +183,11 @@ u32 RN8209_ReadData(u8 address)
 		    	data&=0xFFFFFFFE;				
 		    }	
 				delay_ms(1);
-				SCLK_H;	
 		 }
-		SCLK_L;
-		delay_ms(2);
+		delay_ms(1);
 		SCSN_H;
+		delay_ms(2);
 		return(data);
-//		break;
 		
 		case 0x22:
 		case 0x23:
@@ -207,18 +202,15 @@ u32 RN8209_ReadData(u8 address)
 		case 0x32:  //新版添加	
 		case 0x35:
     case 0x7f://-----------------------------------------长度为3个字-------------------------------//
-		SCLK_H;//从机在高电平将数据输出
-		for(i=0;i<24;i++)
+		for(i=0;i<8;i++)
 		 {
-			 
-			 
-		   delay_ms(1);//等待从机放好数据
-		   SCLK_L;		//一个下降沿后，数据已经准备好了
+			 SCLK_H;				//从机在高电平将数据输出
+		   delay_ms(1); 	//等待从机放好数据
+		   SCLK_L;				//一个下降沿后，数据已经准备好了
 		   if((GPIO_ReadInputDataBit(GPIOB, GPIO_Pin_14)))//问题：为什么直接用SDO 不行呢?
 		    {
 					data<<=1;
-		    	data|=0x00000001;
-					
+		    	data|=0x00000001;					
 		    }
 		   else
 		    {
@@ -226,29 +218,25 @@ u32 RN8209_ReadData(u8 address)
 		    	data&=0xFFFFFFFE;				
 		    }	
 				delay_ms(1);
-				SCLK_H;		
 		 }
-//		delay_ms(1);
-//		SCLK_L;
-		delay_ms(2);
+		delay_ms(1);
 		SCSN_H;
+		delay_ms(2);
 		return(data);
-//		break;	
-		
+
 		case 0x26 :	
 		case 0x27 :	 
 		case 0x28 :	 //老版本
 		case 0x44 ://---------------------------------------长度为4个字节--------------------------//
-		SCLK_H;//从机在高电平将数据输出
-		for(i=0;i<32;i++)
+		for(i=0;i<8;i++)
 		 {
-		 	 delay_ms(1);//等待从机放好数据
-		   SCLK_L;		//一个下降沿后，数据已经准备好了
+			 SCLK_H;				//从机在高电平将数据输出
+		   delay_ms(1); 	//等待从机放好数据
+		   SCLK_L;				//一个下降沿后，数据已经准备好了
 		   if((GPIO_ReadInputDataBit(GPIOB, GPIO_Pin_14)))//问题：为什么直接用SDO 不行呢?
 		    {
 					data<<=1;
-		    	data|=0x00000001;
-					
+		    	data|=0x00000001;					
 		    }
 		   else
 		    {
@@ -256,24 +244,19 @@ u32 RN8209_ReadData(u8 address)
 		    	data&=0xFFFFFFFE;				
 		    }	
 				delay_ms(1);
-				SCLK_H;	
 		 }
-		SCLK_L;
-		delay_ms(2);
+		delay_ms(1);
 		SCSN_H;
-		return(data);	
-//		break;	
+		delay_ms(2);
+		return(data);		
 		default :
 //		return_s = 0;	
 		break;
 	}
 	 delay_ms(2);
 	 SCSN_H;
-
-//	return  data;
- 
+	 return(0);//在没有数据的时候返回0
 }
-
 
 
 /***********************************************************************
@@ -293,11 +276,9 @@ void RN8209_WriteData(u8 address,u32 order)
 	 {
 	 	 address_s|=0x80;
 	 }
-   SCSN_H;
-	 delay_ms(2);
-	 SCSN_L;
-	 SCLK_H;
-   delay_ms(1);	
+	 SCLK_L;
+	 SCSN_L; 
+	 delay_ms(1);	
 	 for(i=0;i<8;i++)/*发送操作码和地址*/  
     {
 		  SCLK_H;//主机在高电平写命令字节
@@ -314,7 +295,7 @@ void RN8209_WriteData(u8 address,u32 order)
 		   delay_ms(1);
        address_s<<= 1; //-------这里已经改变了变量的值，下面又要调用，就不行---------------------------	
     } 
-    delay_ms(2);//--下面是产生接收的时钟脉冲---//
+    delay_ms(1);//--下面是产生接收的时钟脉冲---//
 	switch(address)
 	{
 		case 0xEA:  //-------------------------------------特殊命令寄存器--------------------------------//
@@ -341,7 +322,7 @@ void RN8209_WriteData(u8 address,u32 order)
 		 	 delay_ms(1);
 		 	 order<<= 1;
 		 } 
-		 delay_ms(100);
+		 delay_ms(1);
 		 res=RN8209_ReadData(address);//回调函数
 		 printf("   %x \r\n",res); //显示ID
 		break;
@@ -372,10 +353,10 @@ void RN8209_WriteData(u8 address,u32 order)
 		case 0x21:
 		case 0x25:	
 		case 0x45://------------------------------------------寄存器长度为2---------------------------//
-		for(i=0;i<16;i++)/*发送操作码和地址*/  
+		for(i=0;i<8;i++)/*发送操作码和地址*/  
 		 {
 		 	 SCLK_H;//主机在高电平写命令字节
-		 	 if((order&0x8000)==0x8000)  //-------------------位数不同，字节不同，与的位也不同，这个要注意------------------------
+		 	 if((order&0x80)==0x80)  
 		 	  {
 		 	  	SDI_H  
 		 	  }
@@ -386,9 +367,9 @@ void RN8209_WriteData(u8 address,u32 order)
 		 	 delay_ms(1);
 		 	 SCLK_L;/*从设备下降沿接收数据*/  
 		 	 delay_ms(1);
-		 	 order<<= 1; 				
+		 	 order<<= 1;
 		 } 
-		 delay_ms(100);
+		 delay_ms(1);
 		 res=RN8209_ReadData(address);//回调函数
 		 printf("   %x \r\n",res); //显示ID
 		break;
@@ -406,10 +387,10 @@ void RN8209_WriteData(u8 address,u32 order)
 		case 0x32:  //新版添加	
 		case 0x35:
     case 0x7f://------------------------------------------长度为3个字-----------------------------//
-		for(i=0;i<24;i++)/*发送操作码和地址*/  
+		for(i=0;i<8;i++)/*发送操作码和地址*/  
 		 {
 		 	 SCLK_H;//主机在高电平写命令字节
-		 	 if((order&0x800000)==0x800000)  
+		 	 if((order&0x80)==0x80)  
 		 	  {
 		 	  	SDI_H  
 		 	  }
@@ -420,9 +401,9 @@ void RN8209_WriteData(u8 address,u32 order)
 		 	 delay_ms(1);
 		 	 SCLK_L;/*从设备下降沿接收数据*/  
 		 	 delay_ms(1);
-		 	 order<<= 1; 			
+		 	 order<<= 1;
 		 } 
-		 delay_ms(100);
+		 delay_ms(1);
 		 res=RN8209_ReadData(address);//回调函数
 		 printf("   %x \r\n",res); //显示ID
 		break;	
@@ -431,30 +412,29 @@ void RN8209_WriteData(u8 address,u32 order)
 		case 0x27 :	 
 		case 0x28 :	 //老版本
 		case 0x44 ://----------------------------------长度为4个字节-------------------------//
-		for(i=0;i<32;i++)/*发送操作码和地址*/  
-		{
-			SCLK_H;//主机在高电平写命令字节
-			if((order&0x80000000)==0x80000000)  
-			 {
-			 	 SDI_H  
-			 }
-			else
-			 {
-			 	 SDI_L;
-			 }
-			delay_ms(1);
-			SCLK_L;/*从设备下降沿接收数据*/  
-			delay_ms(1);
-			order<<= 1; 		
-		} 	
-		delay_ms(100);
+for(i=0;i<8;i++)/*发送操作码和地址*/  
+		 {
+		 	 SCLK_H;//主机在高电平写命令字节
+		 	 if((order&0x80)==0x80)  
+		 	  {
+		 	  	SDI_H  
+		 	  }
+		 	 else
+		 	  {
+		 	  	SDI_L;
+		 	  }
+		 	 delay_ms(1);
+		 	 SCLK_L;/*从设备下降沿接收数据*/  
+		 	 delay_ms(1);
+		 	 order<<= 1;
+		 } 
+		 delay_ms(1);
 		 res=RN8209_ReadData(address);//回调函数
 		 printf("   %x \r\n",res); //显示ID
 		break;	
 		default :
 		break;
 	}
-	SCLK_H;
 	delay_ms(2);
 	SCSN_H;
 	delay_ms(2);

@@ -1,0 +1,61 @@
+<html>
+<body>
+<pre>
+<h1>礦ision Build Log</h1>
+<h2>Tool Versions:</h2>
+IDE-Version: μVision V5.22.0.0
+Copyright (C) 2016 ARM Ltd and ARM Germany GmbH. All rights reserved.
+License Information: 1 Microsoft, Microsoft, LIC=9N0WF-6T3YP-KSUYM-XU46R-96MJ4-76QSD
+ 
+Tool Versions:
+Toolchain:       MDK-ARM Professional  Version: 5.22
+Toolchain Path:  D:\MDK\ARM\ARMCC\Bin
+C Compiler:      Armcc.exe V5.06 update 4 (build 422)
+Assembler:       Armasm.exe V5.06 update 4 (build 422)
+Linker/Locator:  ArmLink.exe V5.06 update 4 (build 422)
+Library Manager: ArmAr.exe V5.06 update 4 (build 422)
+Hex Converter:   FromElf.exe V5.06 update 4 (build 422)
+CPU DLL:         SARMCM3.DLL V5.22
+Dialog DLL:      DARMSTM.DLL V1.67.0.0
+Target DLL:      Segger\JL2CM3.dll V2.99.23.0
+Dialog DLL:      TARMSTM.DLL V1.66.0.0
+ 
+<h2>Project:</h2>
+E:\1电子科技—自己写的程序\0.0GitHub\RN8209-\USER\SPI.uvprojx
+Project File Date:  12/20/2016
+
+<h2>Output:</h2>
+*** Using Compiler 'V5.06 update 4 (build 422)', folder: 'D:\MDK\ARM\ARMCC\Bin'
+Build target 'SPI'
+compiling main.c...
+main.c(117): warning:  #223-D: function "RN8209_PowerEnergyCount" declared implicitly
+  			RN8209_PowerEnergyCount();
+main.c(119): warning:  #181-D: argument is incompatible with corresponding format string conversion
+  			sprintf((char *)dtbuf,"%x       ",TempU); 
+main.c(122): warning:  #181-D: argument is incompatible with corresponding format string conversion
+  			sprintf((char *)dtbuf,"%x      ",TempIA); 
+main.c(125): warning:  #181-D: argument is incompatible with corresponding format string conversion
+  			sprintf((char *)dtbuf,"%x       ",TempPowerPA); 
+main.c(141): warning:  #181-D: argument is incompatible with corresponding format string conversion
+  		sprintf((char *)dtbuf,"%x       ",RMSUreg);
+main.c(144): warning:  #181-D: argument is incompatible with corresponding format string conversion
+  		sprintf((char *)dtbuf,"%x       ",RMSIAreg);
+main.c(147): warning:  #181-D: argument is incompatible with corresponding format string conversion
+  		sprintf((char *)dtbuf,"%x       ",PowerPAreg);
+main.c(151): warning:  #223-D: function "RN8209_PowerEnergyCount" declared implicitly
+  		RN8209_PowerEnergyCount();
+main.c: 8 warnings, 0 errors
+linking...
+Program Size: Code=42922 RO-data=7786 RW-data=564 ZI-data=1988  
+FromELF: creating hex file...
+"..\OBJ\SPI.axf" - 0 Error(s), 8 Warning(s).
+
+<h2>Collection of Component include folders:</h2>
+  E:\1电子科技—自己写的程序\0.0GitHub\RN8209-\USER\RTE\_SPI
+  D:\MDK\ARM\PACK\Keil\STM32F1xx_DFP\1.0.5\Device\Include
+
+<h2>Collection of Component Files used:</h2>
+Build Time Elapsed:  00:00:01
+</pre>
+</body>
+</html>
