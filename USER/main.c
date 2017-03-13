@@ -129,7 +129,9 @@ __align(4) u8 dtbuf[50];
 		POINT_COLOR=BLUE;
 		LCD_ShowString(50,10,130,24,24,"present value"); //一刚开始，读取寄存器的值
 		
-		RN8209_KZ( ); //首先是测量空载
+		RN8209_ReadData(0x7F);//ID
+		
+//		RN8209_KZ( ); //首先是测量空载
 //		RMSIAreg=RN8209_ReadData(IARMS);//电流A通道有效值
 //	  PowerPAreg=RN8209_ReadData(PowerPA);//有功功率A通道
 //	  RMSUreg=RN8209_ReadData(URMS);//电压通道有效值
