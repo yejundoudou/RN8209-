@@ -160,7 +160,7 @@
         <SetRegEntry>
           <Number>0</Number>
           <Key>JL2CM3</Key>
-          <Name>-U304439649 -O78 -S2 -ZTIFSpeedSel5000 -A0 -C0 -JU1 -JI127.0.0.1 -JP0 -RST0 -N00("ARM CoreSight SW-DP") -D00(1BA01477) -L00(4) -TO18 -TC10000000 -TP21 -TDS8007 -TDT0 -TDC1F -TIEFFFFFFFF -TIP8 -TB1 -TFE0 -FO15 -FD20000000 -FC1000 -FN1 -FF0STM32F10x_512.FLM -FS08000000 -FL080000 -FP0($$Device:STM32F103ZE$Flash\STM32F10x_512.FLM)</Name>
+          <Name>-U17935099 -O78 -S2 -ZTIFSpeedSel5000 -A0 -C0 -JU1 -JI127.0.0.1 -JP0 -RST0 -N00("ARM CoreSight SW-DP") -D00(1BA01477) -L00(4) -TO18 -TC10000000 -TP21 -TDS8007 -TDT0 -TDC1F -TIEFFFFFFFF -TIP8 -TB1 -TFE0 -FO15 -FD20000000 -FC1000 -FN1 -FF0STM32F10x_512.FLM -FS08000000 -FL080000 -FP0($$Device:STM32F103ZE$Flash\STM32F10x_512.FLM)</Name>
         </SetRegEntry>
         <SetRegEntry>
           <Number>0</Number>
@@ -172,66 +172,66 @@
         <Bp>
           <Number>0</Number>
           <Type>0</Type>
-          <LineNumber>654</LineNumber>
-          <EnabledFlag>1</EnabledFlag>
-          <Address>134237514</Address>
-          <ByteObject>0</ByteObject>
-          <HtxType>0</HtxType>
-          <ManyObjects>0</ManyObjects>
-          <SizeOfObject>0</SizeOfObject>
-          <BreakByAccess>0</BreakByAccess>
-          <BreakIfRCount>1</BreakIfRCount>
-          <Filename>E:\1鐢靛瓙绉戞妧鈥旇嚜宸卞啓鐨勭▼搴?R N 8 2 0 9 G\RN8209G SPI瀹為獙2016.12.21\HARDWARE\RN8209G_SPI\RN8209G_SPI.c</Filename>
-          <ExecCommand></ExecCommand>
-          <Expression>\\SPI\../HARDWARE/RN8209G_SPI/RN8209G_SPI.c\654</Expression>
-        </Bp>
-        <Bp>
-          <Number>1</Number>
-          <Type>0</Type>
           <LineNumber>658</LineNumber>
           <EnabledFlag>1</EnabledFlag>
-          <Address>134237588</Address>
+          <Address>134237482</Address>
           <ByteObject>0</ByteObject>
           <HtxType>0</HtxType>
           <ManyObjects>0</ManyObjects>
           <SizeOfObject>0</SizeOfObject>
           <BreakByAccess>0</BreakByAccess>
           <BreakIfRCount>1</BreakIfRCount>
-          <Filename>E:\1鐢靛瓙绉戞妧鈥旇嚜宸卞啓鐨勭▼搴?R N 8 2 0 9 G\RN8209G SPI瀹為獙2016.12.21\HARDWARE\RN8209G_SPI\RN8209G_SPI.c</Filename>
+          <Filename>E:\1鐢靛瓙绉戞妧鈥旇嚜宸卞啓鐨勭▼搴?0.0GitHub\RN8209-\HARDWARE\RN8209G_SPI\RN8209G_SPI.c</Filename>
           <ExecCommand></ExecCommand>
           <Expression>\\SPI\../HARDWARE/RN8209G_SPI/RN8209G_SPI.c\658</Expression>
         </Bp>
         <Bp>
-          <Number>2</Number>
+          <Number>1</Number>
           <Type>0</Type>
-          <LineNumber>137</LineNumber>
+          <LineNumber>140</LineNumber>
           <EnabledFlag>1</EnabledFlag>
-          <Address>134219018</Address>
+          <Address>134218634</Address>
           <ByteObject>0</ByteObject>
           <HtxType>0</HtxType>
           <ManyObjects>0</ManyObjects>
           <SizeOfObject>0</SizeOfObject>
           <BreakByAccess>0</BreakByAccess>
           <BreakIfRCount>1</BreakIfRCount>
-          <Filename>E:\1鐢靛瓙绉戞妧鈥旇嚜宸卞啓鐨勭▼搴?R N 8 2 0 9 G\RN8209G SPI瀹為獙2016.12.21\USER\main.c</Filename>
+          <Filename>E:\1鐢靛瓙绉戞妧鈥旇嚜宸卞啓鐨勭▼搴?0.0GitHub\RN8209-\USER\main.c</Filename>
           <ExecCommand></ExecCommand>
-          <Expression>\\SPI\main.c\137</Expression>
+          <Expression>\\SPI\main.c\140</Expression>
+        </Bp>
+        <Bp>
+          <Number>2</Number>
+          <Type>0</Type>
+          <LineNumber>141</LineNumber>
+          <EnabledFlag>1</EnabledFlag>
+          <Address>134219024</Address>
+          <ByteObject>0</ByteObject>
+          <HtxType>0</HtxType>
+          <ManyObjects>0</ManyObjects>
+          <SizeOfObject>0</SizeOfObject>
+          <BreakByAccess>0</BreakByAccess>
+          <BreakIfRCount>1</BreakIfRCount>
+          <Filename>E:\1鐢靛瓙绉戞妧鈥旇嚜宸卞啓鐨勭▼搴?0.0GitHub\RN8209-\USER\main.c</Filename>
+          <ExecCommand></ExecCommand>
+          <Expression>\\SPI\main.c\141</Expression>
         </Bp>
         <Bp>
           <Number>3</Number>
           <Type>0</Type>
-          <LineNumber>139</LineNumber>
+          <LineNumber>142</LineNumber>
           <EnabledFlag>1</EnabledFlag>
-          <Address>134219030</Address>
+          <Address>134219044</Address>
           <ByteObject>0</ByteObject>
           <HtxType>0</HtxType>
           <ManyObjects>0</ManyObjects>
           <SizeOfObject>0</SizeOfObject>
           <BreakByAccess>0</BreakByAccess>
           <BreakIfRCount>1</BreakIfRCount>
-          <Filename>E:\1鐢靛瓙绉戞妧鈥旇嚜宸卞啓鐨勭▼搴?R N 8 2 0 9 G\RN8209G SPI瀹為獙2016.12.21\USER\main.c</Filename>
+          <Filename>E:\1鐢靛瓙绉戞妧鈥旇嚜宸卞啓鐨勭▼搴?0.0GitHub\RN8209-\USER\main.c</Filename>
           <ExecCommand></ExecCommand>
-          <Expression>\\SPI\main.c\139</Expression>
+          <Expression>\\SPI\main.c\142</Expression>
         </Bp>
       </Breakpoint>
       <WatchWindow1>
@@ -249,6 +249,21 @@
           <count>2</count>
           <WinNumber>1</WinNumber>
           <ItemText>dtbuf</ItemText>
+        </Ww>
+        <Ww>
+          <count>3</count>
+          <WinNumber>1</WinNumber>
+          <ItemText>data</ItemText>
+        </Ww>
+        <Ww>
+          <count>4</count>
+          <WinNumber>1</WinNumber>
+          <ItemText>dtbuf</ItemText>
+        </Ww>
+        <Ww>
+          <count>5</count>
+          <WinNumber>1</WinNumber>
+          <ItemText>RMSIAreg,0x0A</ItemText>
         </Ww>
       </WatchWindow1>
       <MemoryWindow1>

@@ -7,29 +7,22 @@
 #include "RN8209G_SPI.h"	
 #include "usmart.h"
 
- 
-/************************************************
-
-************************************************/
-
- 				 	
-//要写入到W25Q64的字符串数组
 const u8 TEXT_Buffer[]={"WarShipSTM32 SPI TEST"};
 //extern u8 address;
 //u8 BUF_len[8];
 //u32 BUF_ReceiveData[32];//读出寄存器的值，从0到31开始储存，
 //u32 *data=BUF_ReceiveData;
 //u8*len=BUF_len;
-extern  float  RMSIAreg ;
-extern  float  PowerPAreg ;
-extern  float  RMSUreg  ;
-extern float KiA;
-extern  float  KiB  ;
-extern  float  Ku		;
-extern  float  Kp   ;
-extern  float TempU      ;
-extern  float TempIA     ;
-extern  float TempPowerPA;
+//extern u32  RMSIAreg ;
+//extern u32  PowerPAreg ;
+//extern u32  RMSUreg  ;
+//extern u32  KiA;
+//extern u32  KiB  ;
+//extern u32  Ku		;
+//extern u32  Kp   ;
+//extern u32  TempU      ;
+//extern u32  TempIA     ;
+//extern u32  TempPowerPA;
 
 
 u32  data_r[4];
@@ -136,16 +129,16 @@ __align(4) u8 dtbuf[50];
 //	  PowerPAreg=RN8209_ReadData(PowerPA);//有功功率A通道
 //	  RMSUreg=RN8209_ReadData(URMS);//电压通道有效值
 		
-		RMSIAreg=RN8209_ReadData(0x30);//电流A通道有效值
-//	  PowerPAreg=RN8209_ReadData(31H);//有功功率A通道
-	  RMSUreg=RN8209_ReadData(0x32);//电压通道有效值
-				
-		sprintf((char *)dtbuf,"%x       ",RMSUreg);
+
+	  RMSUreg=RN8209_ReadData(URMS);//电压通道有效值			
+		sprintf((char *)dtbuf,"%x       ",RMSUreg);//把数字转换成字符串，格式要匹配
 		LCD_ShowString(140,40,130,24,24,dtbuf); 
 		
+		RMSIAreg=RN8209_ReadData(0x30);//电流A通道有效值
 		sprintf((char *)dtbuf,"%x       ",RMSIAreg);
 		LCD_ShowString(140,70,130,24,24,dtbuf); 
 		
+		PowerPAreg=RN8209_ReadData(0x31);//有功功率A通道
 		sprintf((char *)dtbuf,"%x       ",PowerPAreg);
 		LCD_ShowString(140,100,130,24,24,dtbuf); 
 		

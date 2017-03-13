@@ -15,12 +15,8 @@
 ///设置从输入信号为高	
 //设置从输入信号为低	
 ////////////////////////////////////////////////////////////////////////////////
-
- 
- 				  	    													  
-
+  				  	    													
 void RN8209G_SPI_config(void);
-
 //u32 RN8209_ReadData(u8 address,u32 *data_r);
 u32 RN8209_ReadData(u8 address);
 void RN8209_WriteData(u8 address,u32 order);    
@@ -43,7 +39,6 @@ void RN8209_KZ(void);
 
 #define SDO  GPIO_ReadInputDataBit(GPIOB, GPIO_Pin_14);//设置从输出信号为高
 	
-
 #define SDI_H GPIO_SetBits(GPIOB, GPIO_Pin_15);//设置从输入信号为高
 #define SDI_L GPIO_ResetBits(GPIOB, GPIO_Pin_15);//设置从输入信号为低	
 
@@ -160,8 +155,27 @@ typedef struct
 }Adjust_Parameter_TypeDef;		//58 Byte
 //-------------------------end 校表参数文件---------------------------------------------//
 
-
-
+//----------------------------------------start测试参数定义----------------------------------------//
+extern u32 RMSIAreg;
+extern u32 RMSIBreg;
+extern u32 RMSUreg;//有效值寄存器，暂时放在外边
+extern u32 PowerPAreg;
+extern u32 RMSIAreg_adj;
+extern u32 RMSIBreg_adj;
+extern u32 RMSUreg_adj;//校表的时候，有效值寄存器，空载，暂时放在外边
+extern u32 PowerAreg_adj;
+extern u32 TempU;
+extern u32 TempIA;
+extern u32 TempPowerPA;
+extern float err_PowerA;
+extern float err_Phase_A;
+extern float err_reactive_A;
+extern u8 angle_reactive_A;
+extern float KiA;
+extern float KiB;
+extern float Ku;
+extern float Kp;
+//----------------------------------------end测试参数定义----------------------------------------//
 
 #endif
 

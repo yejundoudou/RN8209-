@@ -12,39 +12,39 @@
 // 1 .SDI --------B15
 
 //////////////////////////////////////////////////////////////////////////////////
-u8 Vu;   //额定电压输入时，电压通道的电压=引脚电压*放大倍数
-u8 Vi;	
+u8 Vu=0;   //额定电压输入时，电压通道的电压=引脚电压*放大倍数
+u8 Vi=0;	
 u8 Un=220;		//额定输入的电压   ，校表时修改
 float Ib=8;		//额定输入的电流   ，校表时修改
 unsigned int EC=3200;
+u32 RMSIAreg=0;
+u32 RMSIBreg=0;
+u32 RMSUreg=0;//有效值寄存器，暂时放在外边
+u32 PowerPAreg=0;
 
-float RMSIAreg;
- float RMSIBreg;
- float RMSUreg;//有效值寄存器，暂时放在外边
- float PowerPAreg;
+u32 RMSIAreg_adj=0;
+u32 RMSIBreg_adj=0;
+u32 RMSUreg_adj=0;//校表的时候，有效值寄存器，空载，暂时放在外边
+u32 PowerAreg_adj=0;
 
-u32 RMSIAreg_adj;
-u32 RMSIBreg_adj;
-u32 RMSUreg_adj;//校表的时候，有效值寄存器，空载，暂时放在外边
-u32 PowerAreg_adj;
+u32 TempU=0;
+u32 TempIA=0;
+u32 TempPowerPA=0;
 
-float TempU;
-float TempIA;
-float TempPowerPA;
+float err_PowerA=0;
+float err_Phase_A=0;
+float err_reactive_A=0;
+u8 angle_reactive_A=0;
+float KiA=0;
+float KiB=0;
+float Ku=0;
+float Kp=0;
 
-float err_PowerA;
-float err_Phase_A;
-float err_reactive_A;
-u8 angle_reactive_A;
-float KiA;
-float KiB;
-float Ku;
-float Kp;
 extern u32 data_r[4];
 
 Adjust_Parameter_TypeDef Adjust_Parameter_Structure;
  
-//以下是SPI模块的初始化代码，配置成主机模式，访问SD Card/W25Q64/NRF24L01						  
+//以下是SPI模块的初始化代码，配置成主机模式		  
 //SPI口初始化
 //这里针是对SPI2的初始化
 void RN8209G_SPI_config(void)
@@ -83,10 +83,8 @@ u32 RN8209_ReadData(u8 address)
 //	u8 return_s=1;
 	u8 address_s=address;	
 //	Adjust_Parameter_TypeDef    Adjust_Parameter_Structure;
-//	u8 data8;
-	
+//	u8 data8;	
 //	data=0;//下次来读的时候，就先清零
-	
 	SCLK_L;	
 	SCSN_L;
 	delay_ms(1);	 
@@ -108,7 +106,7 @@ u32 RN8209_ReadData(u8 address)
      address_s<<= 1; //-------这里已经改变了变量的值，下面又要调用，就不行---------------------------
    } 
 	 SDI_L; //读取完之后，数据保持低电平 
-   delay_ms(1);//间隔时间t1应该大于半个时钟周期。1+1
+   delay_ms(1);//间隔时间t1应该大于半个时钟周期。1+1	 
 	 
 /*------------------下面是产生接收的时钟脉冲------------------*/
 	switch(address)
@@ -140,6 +138,7 @@ u32 RN8209_ReadData(u8 address)
 		SCSN_H;
 		delay_ms(2);
 		return(data);
+		break;
 	
 		case 0x00:
 		case 0x01:
@@ -188,6 +187,7 @@ u32 RN8209_ReadData(u8 address)
 		SCSN_H;
 		delay_ms(2);
 		return(data);
+		break;
 		
 		case 0x22:
 		case 0x23:
@@ -222,7 +222,7 @@ u32 RN8209_ReadData(u8 address)
 		delay_ms(1);
 		SCSN_H;
 		delay_ms(2);
-		return(data);
+		break;
 
 		case 0x26 :	
 		case 0x27 :	 
@@ -248,14 +248,17 @@ u32 RN8209_ReadData(u8 address)
 		delay_ms(1);
 		SCSN_H;
 		delay_ms(2);
-		return(data);		
-		default :
-//		return_s = 0;	
+		return(data);	
 		break;
+		 
+		default :
+						return(data);	
+
 	}
 	 delay_ms(2);
 	 SCSN_H;
-	 return(0);//在没有数据的时候返回0
+	 return(data);	
+
 }
 
 
@@ -372,7 +375,7 @@ void RN8209_WriteData(u8 address,u32 order)
 		 delay_ms(1);
 		 res=RN8209_ReadData(address);//回调函数
 		 printf("   %x \r\n",res); //显示ID
-		break;
+		 break;
 			
 		case 0x22:
 		case 0x23:
@@ -412,7 +415,7 @@ void RN8209_WriteData(u8 address,u32 order)
 		case 0x27 :	 
 		case 0x28 :	 //老版本
 		case 0x44 ://----------------------------------长度为4个字节-------------------------//
-for(i=0;i<32;i++)/*发送操作码和地址*/  
+		for(i=0;i<32;i++)/*发送操作码和地址*/  
 		 {
 		 	 SCLK_H;//主机在高电平写命令字节
 		 	 if((order&0x80)==0x80)  
