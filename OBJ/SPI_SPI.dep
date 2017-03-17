@@ -1,5 +1,5 @@
 Dependencies for Project 'SPI', Target 'SPI': (DO NOT MODIFY !)
-F (.\main.c)(0x58C6B2C4)(-c --cpu Cortex-M3 -g -O2 --apcs=interwork -I ..\HARDWARE\LED -I ..\SYSTEM\delay -I ..\SYSTEM\sys -I ..\SYSTEM\usart -I ..\USER -I ..\STM32F10x_FWLib\inc -I ..\CORE -I ..\HARDWARE\KEY -I ..\HARDWARE\LCD -I ..\HARDWARE\RN8209G_SPI -I ..\USMART-IE:\1电子科技—自己写的程序\0.0GitHub\RN8209-\USER\RTE\_SPI-ID:\MDK\ARM\PACK\Keil\STM32F1xx_DFP\1.0.5\Device\Include-ID:\MDK\ARM\CMSIS\Include-D__UVISION_VERSION="522" -DSTM32F10X_HD -DSTM32F10X_HD -DUSE_STDPERIPH_DRIVER-o ..\obj\main.o --omf_browse ..\obj\main.crf --depend ..\obj\main.d)
+F (.\main.c)(0x58CB9CF5)(-c --cpu Cortex-M3 -g -O2 --apcs=interwork -I ..\HARDWARE\LED -I ..\SYSTEM\delay -I ..\SYSTEM\sys -I ..\SYSTEM\usart -I ..\USER -I ..\STM32F10x_FWLib\inc -I ..\CORE -I ..\HARDWARE\KEY -I ..\HARDWARE\LCD -I ..\HARDWARE\RN8209G_SPI -I ..\USMART-IE:\1电子科技—自己写的程序\0.0GitHub\RN8209-\USER\RTE\_SPI-ID:\MDK\ARM\PACK\Keil\STM32F1xx_DFP\1.0.5\Device\Include-ID:\MDK\ARM\CMSIS\Include-D__UVISION_VERSION="522" -DSTM32F10X_HD -DSTM32F10X_HD -DUSE_STDPERIPH_DRIVER-o ..\obj\main.o --omf_browse ..\obj\main.crf --depend ..\obj\main.d)
 I (..\HARDWARE\LED\led.h)(0x50513ABC)
 I (..\SYSTEM\sys\sys.h)(0x550F951C)
 I (..\USER\stm32f10x.h)(0x4D783CB4)
@@ -36,7 +36,7 @@ I (..\HARDWARE\LCD\lcd.h)(0x5539BD2A)
 I (D:\MDK\ARM\ARMCC\include\stdlib.h)(0x57F606B8)
 I (..\SYSTEM\usart\usart.h)(0x50517A82)
 I (D:\MDK\ARM\ARMCC\include\stdio.h)(0x57F606B8)
-I (..\HARDWARE\RN8209G_SPI\RN8209G_SPI.h)(0x58C672B7)
+I (..\HARDWARE\RN8209G_SPI\RN8209G_SPI.h)(0x58CB9D86)
 I (..\USMART\usmart.h)(0x528CCEDC)
 I (..\USMART\usmart_str.h)(0x528CCEDC)
 F (.\stm32f10x_it.c)(0x5840FC8B)(-c --cpu Cortex-M3 -g -O2 --apcs=interwork -I ..\HARDWARE\LED -I ..\SYSTEM\delay -I ..\SYSTEM\sys -I ..\SYSTEM\usart -I ..\USER -I ..\STM32F10x_FWLib\inc -I ..\CORE -I ..\HARDWARE\KEY -I ..\HARDWARE\LCD -I ..\HARDWARE\RN8209G_SPI -I ..\USMART-IE:\1电子科技—自己写的程序\0.0GitHub\RN8209-\USER\RTE\_SPI-ID:\MDK\ARM\PACK\Keil\STM32F1xx_DFP\1.0.5\Device\Include-ID:\MDK\ARM\CMSIS\Include-D__UVISION_VERSION="522" -DSTM32F10X_HD -DSTM32F10X_HD -DUSE_STDPERIPH_DRIVER-o ..\obj\stm32f10x_it.o --omf_browse ..\obj\stm32f10x_it.crf --depend ..\obj\stm32f10x_it.d)
@@ -199,8 +199,8 @@ I (..\HARDWARE\LCD\font.h)(0x550289B8)
 I (..\SYSTEM\usart\usart.h)(0x50517A82)
 I (D:\MDK\ARM\ARMCC\include\stdio.h)(0x57F606B8)
 I (..\SYSTEM\delay\delay.h)(0x58063437)
-F (..\HARDWARE\RN8209G_SPI\RN8209G_SPI.c)(0x58C6B0D2)(-c --cpu Cortex-M3 -g -O2 --apcs=interwork -I ..\HARDWARE\LED -I ..\SYSTEM\delay -I ..\SYSTEM\sys -I ..\SYSTEM\usart -I ..\USER -I ..\STM32F10x_FWLib\inc -I ..\CORE -I ..\HARDWARE\KEY -I ..\HARDWARE\LCD -I ..\HARDWARE\RN8209G_SPI -I ..\USMART-IE:\1电子科技—自己写的程序\0.0GitHub\RN8209-\USER\RTE\_SPI-ID:\MDK\ARM\PACK\Keil\STM32F1xx_DFP\1.0.5\Device\Include-ID:\MDK\ARM\CMSIS\Include-D__UVISION_VERSION="522" -DSTM32F10X_HD -DSTM32F10X_HD -DUSE_STDPERIPH_DRIVER-o ..\obj\rn8209g_spi.o --omf_browse ..\obj\rn8209g_spi.crf --depend ..\obj\rn8209g_spi.d)
-I (..\HARDWARE\RN8209G_SPI\RN8209G_SPI.h)(0x58C672B7)
+F (..\HARDWARE\RN8209G_SPI\RN8209G_SPI.c)(0x58CBA102)(-c --cpu Cortex-M3 -g -O2 --apcs=interwork -I ..\HARDWARE\LED -I ..\SYSTEM\delay -I ..\SYSTEM\sys -I ..\SYSTEM\usart -I ..\USER -I ..\STM32F10x_FWLib\inc -I ..\CORE -I ..\HARDWARE\KEY -I ..\HARDWARE\LCD -I ..\HARDWARE\RN8209G_SPI -I ..\USMART-IE:\1电子科技—自己写的程序\0.0GitHub\RN8209-\USER\RTE\_SPI-ID:\MDK\ARM\PACK\Keil\STM32F1xx_DFP\1.0.5\Device\Include-ID:\MDK\ARM\CMSIS\Include-D__UVISION_VERSION="522" -DSTM32F10X_HD -DSTM32F10X_HD -DUSE_STDPERIPH_DRIVER-o ..\obj\rn8209g_spi.o --omf_browse ..\obj\rn8209g_spi.crf --depend ..\obj\rn8209g_spi.d)
+I (..\HARDWARE\RN8209G_SPI\RN8209G_SPI.h)(0x58CB9D86)
 I (..\SYSTEM\sys\sys.h)(0x550F951C)
 I (..\USER\stm32f10x.h)(0x4D783CB4)
 I (..\CORE\core_cm3.h)(0x4D523B58)
@@ -605,7 +605,7 @@ I (..\SYSTEM\usart\usart.h)(0x50517A82)
 I (D:\MDK\ARM\ARMCC\include\stdio.h)(0x57F606B8)
 I (..\HARDWARE\LCD\lcd.h)(0x5539BD2A)
 I (D:\MDK\ARM\ARMCC\include\stdlib.h)(0x57F606B8)
-I (..\HARDWARE\RN8209G_SPI\RN8209G_SPI.h)(0x58C672B7)
+I (..\HARDWARE\RN8209G_SPI\RN8209G_SPI.h)(0x58CB9D86)
 F (..\USMART\usmart_str.c)(0x528CCEDC)(-c --cpu Cortex-M3 -g -O2 --apcs=interwork -I ..\HARDWARE\LED -I ..\SYSTEM\delay -I ..\SYSTEM\sys -I ..\SYSTEM\usart -I ..\USER -I ..\STM32F10x_FWLib\inc -I ..\CORE -I ..\HARDWARE\KEY -I ..\HARDWARE\LCD -I ..\HARDWARE\RN8209G_SPI -I ..\USMART-IE:\1电子科技—自己写的程序\0.0GitHub\RN8209-\USER\RTE\_SPI-ID:\MDK\ARM\PACK\Keil\STM32F1xx_DFP\1.0.5\Device\Include-ID:\MDK\ARM\CMSIS\Include-D__UVISION_VERSION="522" -DSTM32F10X_HD -DSTM32F10X_HD -DUSE_STDPERIPH_DRIVER-o ..\obj\usmart_str.o --omf_browse ..\obj\usmart_str.crf --depend ..\obj\usmart_str.d)
 I (..\USMART\usmart_str.h)(0x528CCEDC)
 I (..\USER\stm32f10x.h)(0x4D783CB4)

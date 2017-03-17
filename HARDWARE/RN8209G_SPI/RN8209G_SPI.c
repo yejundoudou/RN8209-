@@ -632,14 +632,15 @@ void RN8209_PowerEnergyCount(void)
 	
 	RMSIAreg_adj=0x6c000;
 	KiA=(float)(0.00007233796);
-	if(RMSUreg_adj<RMSUreg)
-	{
-		TempIA=0;
-	}
-	else
-	{
-		TempIA=(float)(KiA*(RMSIAreg_adj-RMSIAreg));
-	}
+//	if(RMSUreg_adj<RMSUreg)//怎么是电压U啦？
+//	{
+//		TempIA=RMSUreg_adj;//测试用，之前是0
+//	}
+//	else
+//	{
+//		TempIA=(float)(KiA*(RMSIAreg_adj-RMSIAreg));//原
+//	}
+	TempIA=(float)(KiA*(RMSIAreg));
 	TempU=(float)(Ku*(RMSUreg_adj-RMSUreg));
 	
 	TempPowerPA=(float)(Kp*(RMSIBreg_adj-RMSIBreg));

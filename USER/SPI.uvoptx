@@ -174,7 +174,7 @@
           <Type>0</Type>
           <LineNumber>658</LineNumber>
           <EnabledFlag>1</EnabledFlag>
-          <Address>134237482</Address>
+          <Address>134237400</Address>
           <ByteObject>0</ByteObject>
           <HtxType>0</HtxType>
           <ManyObjects>0</ManyObjects>
@@ -188,50 +188,18 @@
         <Bp>
           <Number>1</Number>
           <Type>0</Type>
-          <LineNumber>140</LineNumber>
+          <LineNumber>633</LineNumber>
           <EnabledFlag>1</EnabledFlag>
-          <Address>134218634</Address>
+          <Address>134237318</Address>
           <ByteObject>0</ByteObject>
           <HtxType>0</HtxType>
           <ManyObjects>0</ManyObjects>
           <SizeOfObject>0</SizeOfObject>
           <BreakByAccess>0</BreakByAccess>
           <BreakIfRCount>1</BreakIfRCount>
-          <Filename>E:\1鐢靛瓙绉戞妧鈥旇嚜宸卞啓鐨勭▼搴?0.0GitHub\RN8209-\USER\main.c</Filename>
+          <Filename>E:\1鐢靛瓙绉戞妧鈥旇嚜宸卞啓鐨勭▼搴?0.0GitHub\RN8209-\HARDWARE\RN8209G_SPI\RN8209G_SPI.c</Filename>
           <ExecCommand></ExecCommand>
-          <Expression>\\SPI\main.c\140</Expression>
-        </Bp>
-        <Bp>
-          <Number>2</Number>
-          <Type>0</Type>
-          <LineNumber>141</LineNumber>
-          <EnabledFlag>1</EnabledFlag>
-          <Address>134219024</Address>
-          <ByteObject>0</ByteObject>
-          <HtxType>0</HtxType>
-          <ManyObjects>0</ManyObjects>
-          <SizeOfObject>0</SizeOfObject>
-          <BreakByAccess>0</BreakByAccess>
-          <BreakIfRCount>1</BreakIfRCount>
-          <Filename>E:\1鐢靛瓙绉戞妧鈥旇嚜宸卞啓鐨勭▼搴?0.0GitHub\RN8209-\USER\main.c</Filename>
-          <ExecCommand></ExecCommand>
-          <Expression>\\SPI\main.c\141</Expression>
-        </Bp>
-        <Bp>
-          <Number>3</Number>
-          <Type>0</Type>
-          <LineNumber>142</LineNumber>
-          <EnabledFlag>1</EnabledFlag>
-          <Address>134219044</Address>
-          <ByteObject>0</ByteObject>
-          <HtxType>0</HtxType>
-          <ManyObjects>0</ManyObjects>
-          <SizeOfObject>0</SizeOfObject>
-          <BreakByAccess>0</BreakByAccess>
-          <BreakIfRCount>1</BreakIfRCount>
-          <Filename>E:\1鐢靛瓙绉戞妧鈥旇嚜宸卞啓鐨勭▼搴?0.0GitHub\RN8209-\USER\main.c</Filename>
-          <ExecCommand></ExecCommand>
-          <Expression>\\SPI\main.c\142</Expression>
+          <Expression>\\SPI\../HARDWARE/RN8209G_SPI/RN8209G_SPI.c\633</Expression>
         </Bp>
       </Breakpoint>
       <WatchWindow1>
@@ -264,6 +232,31 @@
           <count>5</count>
           <WinNumber>1</WinNumber>
           <ItemText>RMSIAreg,0x0A</ItemText>
+        </Ww>
+        <Ww>
+          <count>6</count>
+          <WinNumber>1</WinNumber>
+          <ItemText>KiA</ItemText>
+        </Ww>
+        <Ww>
+          <count>7</count>
+          <WinNumber>1</WinNumber>
+          <ItemText>RMSIAreg_adj</ItemText>
+        </Ww>
+        <Ww>
+          <count>8</count>
+          <WinNumber>1</WinNumber>
+          <ItemText>RMSIAreg,0x0A</ItemText>
+        </Ww>
+        <Ww>
+          <count>9</count>
+          <WinNumber>1</WinNumber>
+          <ItemText>RMSIAreg</ItemText>
+        </Ww>
+        <Ww>
+          <count>10</count>
+          <WinNumber>1</WinNumber>
+          <ItemText>TempIA</ItemText>
         </Ww>
       </WatchWindow1>
       <MemoryWindow1>

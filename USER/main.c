@@ -107,7 +107,7 @@ __align(4) u8 dtbuf[50];
 			POINT_COLOR=BLUE;
 			LCD_ShowString(50,10,130,24,24,"  PowerEnergyCount         "); 
 			mode_key=0;
-			RN8209_PowerEnergyCount();
+//			RN8209_PowerEnergyCount();
 
 			sprintf((char *)dtbuf,"%x       ",TempU); 
 			LCD_ShowString(100,150,120,24,24,dtbuf); 
@@ -134,17 +134,17 @@ __align(4) u8 dtbuf[50];
 		sprintf((char *)dtbuf,"%x       ",RMSUreg);//把数字转换成字符串，格式要匹配
 		LCD_ShowString(140,40,130,24,24,dtbuf); 
 		
-		RMSIAreg=RN8209_ReadData(0x30);//电流A通道有效值
+		RMSIAreg=RN8209_ReadData(IARMS);//电流A通道有效值
 		sprintf((char *)dtbuf,"%x       ",RMSIAreg);
 		LCD_ShowString(140,70,130,24,24,dtbuf); 
 		
-		PowerPAreg=RN8209_ReadData(0x31);//有功功率A通道
+		PowerPAreg=RN8209_ReadData(PowerPA);//有功功率A通道
 		sprintf((char *)dtbuf,"%x       ",PowerPAreg);
 		LCD_ShowString(140,100,130,24,24,dtbuf); 
 		
 		
 		RN8209_PowerEnergyCount();
-		sprintf((char *)dtbuf,"%f     ",TempIA); 
+		sprintf((char *)dtbuf,"%x     ",TempIA); 
 		LCD_ShowString(100,180,120,24,24,dtbuf); 		
 		
 		

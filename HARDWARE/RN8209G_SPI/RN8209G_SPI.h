@@ -29,6 +29,7 @@ void RN8209_DC_Config(void );
 void RN8209_DC_Adjust(void );
 u32 RN8209_readIA_RMS(void );
 void RN8209_KZ(void);
+void RN8209_PowerEnergyCount(void);
 
 
 #define SCSN_H GPIO_SetBits(GPIOB, GPIO_Pin_12);//设置片选信号为高
