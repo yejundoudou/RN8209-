@@ -309,10 +309,10 @@ void RN8209_WriteData(u8 address,u32 order)
 		case 0x41:
 		case 0x42:
 		case 0x43://-------------------------------------------寄存器长度为1---------------------------//
-		for(i=0;i<8;i++)/*发送操作码和地址*/  
+		for(i=0;i<8;i++)/*发送操作码和地址*/  //命令的字节不同，循环次数不同
 		 {
 		 	 SCLK_H;//主机在高电平写命令字节
-		 	 if((order&0x80)==0x80)  
+		 	 if((order&0x80)==0x80)  //命令的字节不同，相与的位数不同
 		 	  {
 		 	  	SDI_H  
 		 	  }
@@ -326,7 +326,7 @@ void RN8209_WriteData(u8 address,u32 order)
 		 	 order<<= 1;
 		 } 
 		 delay_ms(1);
-		 res=RN8209_ReadData(address);//回调函数
+//		 res=RN8209_ReadData(address);//回调函数
 		 printf("   %x \r\n",res); //显示ID
 		break;
 		
@@ -359,7 +359,7 @@ void RN8209_WriteData(u8 address,u32 order)
 		for(i=0;i<16;i++)/*发送操作码和地址*/  
 		 {
 		 	 SCLK_H;//主机在高电平写命令字节
-		 	 if((order&0x80)==0x80)  
+		 	 if((order&0x8000)==0x8000)//命令的字节不同，相与的位数不同  
 		 	  {
 		 	  	SDI_H  
 		 	  }
@@ -373,7 +373,7 @@ void RN8209_WriteData(u8 address,u32 order)
 		 	 order<<= 1;
 		 } 
 		 delay_ms(1);
-		 res=RN8209_ReadData(address);//回调函数
+//		 res=RN8209_ReadData(address);//回调函数
 		 printf("   %x \r\n",res); //显示ID
 		 break;
 			
@@ -393,7 +393,7 @@ void RN8209_WriteData(u8 address,u32 order)
 		for(i=0;i<24;i++)/*发送操作码和地址*/  
 		 {
 		 	 SCLK_H;//主机在高电平写命令字节
-		 	 if((order&0x80)==0x80)  
+		 	 if((order&0x800000)==0x800000)  
 		 	  {
 		 	  	SDI_H  
 		 	  }
@@ -407,7 +407,7 @@ void RN8209_WriteData(u8 address,u32 order)
 		 	 order<<= 1;
 		 } 
 		 delay_ms(1);
-		 res=RN8209_ReadData(address);//回调函数
+//		 res=RN8209_ReadData(address);//回调函数
 		 printf("   %x \r\n",res); //显示ID
 		break;	
 		
@@ -418,7 +418,7 @@ void RN8209_WriteData(u8 address,u32 order)
 		for(i=0;i<32;i++)/*发送操作码和地址*/  
 		 {
 		 	 SCLK_H;//主机在高电平写命令字节
-		 	 if((order&0x80)==0x80)  
+		 	 if((order&0x80000000)==0x80000000)  
 		 	  {
 		 	  	SDI_H  
 		 	  }
@@ -432,7 +432,7 @@ void RN8209_WriteData(u8 address,u32 order)
 		 	 order<<= 1;
 		 } 
 		 delay_ms(1);
-		 res=RN8209_ReadData(address);//回调函数
+//		 res=RN8209_ReadData(address);//回调函数
 		 printf("   %x \r\n",res); //显示ID
 		break;	
 		default :
@@ -454,11 +454,13 @@ void RN8209_Parameter_Adjust(void)
 {
 //	float temp_HFConst;
 	
-	Adjust_Parameter_TypeDef Adjust_Parameter_Structure;
+	Adjust_Parameter_TypeDef Adjust_Parameter_Structure;	
 	RN8209_WriteData(0xEA,0XE5);//写使能
 	
-	Adjust_Parameter_Structure.AdjustSYSCON=0x000f;//00H
-	Adjust_Parameter_Structure.AdjustEMUCON=0x1403;//01H
+//	Adjust_Parameter_Structure.AdjustSYSCON=0x000f;//（000f，关闭电流B，电压增益为4倍，电流A为16倍）
+//	Adjust_Parameter_Structure.AdjustSYSCON=0x0000;//（00H，关闭电流B，所有增益为1倍）
+	Adjust_Parameter_Structure.AdjustSYSCON=0x000C;//（000c，关闭电流B，电压增益为4倍，电流A为1倍）
+	Adjust_Parameter_Structure.AdjustEMUCON=0x1403;//（1403，电能读后清零，只累加正向，打开全部高通滤波器）
 //	Adjust_Parameter_Structure.AdjustHFConst=0X0B02;//这个是与PFCNT寄存器做比较，5A
 	Adjust_Parameter_Structure.AdjustHFConst=0X06E1;//这个是与PFCNT寄存器做比较,8A
 //	Adjust_Parameter_Structure.AdjustHFConst=(int)(16.1079*Vu*Vi*(10^11)/(EC*Un*Ib));
@@ -467,7 +469,7 @@ void RN8209_Parameter_Adjust(void)
 	
 	RN8209_WriteData(SYSCON,Adjust_Parameter_Structure.AdjustSYSCON);//B通道ADCON设置，ADC增益选择
 	RN8209_WriteData(EMUCON,Adjust_Parameter_Structure.AdjustEMUCON);//能量累加模式设置	
-	RN8209_WriteData(HFConst,Adjust_Parameter_Structure.AdjustHFConst);//hfconst设置成默认的1000	
+	RN8209_WriteData(HFConst,Adjust_Parameter_Structure.AdjustHFConst);
 	RN8209_WriteData(PStart,Adjust_Parameter_Structure.AdjustPStart);//启动电流设置成默认的
 	RN8209_WriteData(EMUCON2,Adjust_Parameter_Structure.AdjustEMUCON2);
 }

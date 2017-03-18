@@ -66,9 +66,12 @@ __align(4) u8 dtbuf[50];
 	RN8209G_SPI_config( );
 	RN8209_WriteData(0xEA,0XFA);//软件复位
 	delay_ms(50);
+	RN8209_ReadData(SYSCON);//测试用，看寄存器配置是否正确。
 	RN8209_WriteData(0xEA,0XE5);//写使能
 	delay_ms(50);
+	RN8209_ReadData(SYSCON);//测试用，看寄存器配置是否正确。
 	RN8209_Parameter_Adjust();//校表第一步，参数设置
+	RN8209_ReadData(SYSCON);//测试用，看寄存器配置是否正确。
 //		delay_ms(10);
 //		
 //		RN8209_ActivePower_Adjust();//校表第2.1步——————有功校正
@@ -82,43 +85,43 @@ __align(4) u8 dtbuf[50];
 //	 
 	while(1)
 	{
-		KEY_Scan(0);
-		if((GPIO_ReadInputDataBit(GPIOE,GPIO_Pin_4)==0)&&(mode_key==0))//按下之后，计算K值
-		{ 
-			POINT_COLOR=BLUE;
-			LCD_ShowString(50,10,130,24,24,"  Count_Kx         "); 		
-			delay_ms(50);			
-			RN8209_Count_Kx();                                                 		                                                        
-			sprintf((char *)dtbuf,"%f       ",Ku);                             
-		  LCD_ShowString(100,240,120,24,24,dtbuf);                            
-			                                                                   
-			sprintf((char *)dtbuf,"%f       ",KiA);
-			LCD_ShowString(60,265,200,24,24,dtbuf);
-			
-			
-			sprintf((char *)dtbuf,"%f       ",Kp);
-			LCD_ShowString(100,295,120,24,24,dtbuf); 
-			delay_ms(1000);	
-			mode_key=1;
-		}
-		
-		if((GPIO_ReadInputDataBit(GPIOE,GPIO_Pin_4)==0)&&(mode_key==1))//再次按键之后用K计算电压电流功率
-		{
-			POINT_COLOR=BLUE;
-			LCD_ShowString(50,10,130,24,24,"  PowerEnergyCount         "); 
-			mode_key=0;
-//			RN8209_PowerEnergyCount();
+//		KEY_Scan(0);
+//		if((GPIO_ReadInputDataBit(GPIOE,GPIO_Pin_4)==0)&&(mode_key==0))//按下之后，计算K值
+//		{ 
+//			POINT_COLOR=BLUE;
+//			LCD_ShowString(50,10,130,24,24,"  Count_Kx         "); 		
+//			delay_ms(50);			
+//			RN8209_Count_Kx();                                                 		                                                        
+//			sprintf((char *)dtbuf,"%f       ",Ku);                             
+//		  LCD_ShowString(100,240,120,24,24,dtbuf);                            
+//			                                                                   
+//			sprintf((char *)dtbuf,"%f       ",KiA);
+//			LCD_ShowString(60,265,200,24,24,dtbuf);
+//			
+//			
+//			sprintf((char *)dtbuf,"%f       ",Kp);
+//			LCD_ShowString(100,295,120,24,24,dtbuf); 
+//			delay_ms(1000);	
+//			mode_key=1;
+//		}
+//		
+//		if((GPIO_ReadInputDataBit(GPIOE,GPIO_Pin_4)==0)&&(mode_key==1))//再次按键之后用K计算电压电流功率
+//		{
+//			POINT_COLOR=BLUE;
+//			LCD_ShowString(50,10,130,24,24,"  PowerEnergyCount         "); 
+//			mode_key=0;
+////			RN8209_PowerEnergyCount();
 
-			sprintf((char *)dtbuf,"%x       ",TempU); 
-			LCD_ShowString(100,150,120,24,24,dtbuf); 
-			
-			sprintf((char *)dtbuf,"%x      ",TempIA); 
-			LCD_ShowString(100,180,120,24,24,dtbuf); 
-			
-			sprintf((char *)dtbuf,"%x       ",TempPowerPA); 
-			LCD_ShowString(100,210,120,24,24,dtbuf); 
-			delay_ms(1000);		
-		}
+//			sprintf((char *)dtbuf,"%x       ",TempU); 
+//			LCD_ShowString(100,150,120,24,24,dtbuf); 
+//			
+//			sprintf((char *)dtbuf,"%x      ",TempIA); 
+//			LCD_ShowString(100,180,120,24,24,dtbuf); 
+//			
+//			sprintf((char *)dtbuf,"%x       ",TempPowerPA); 
+//			LCD_ShowString(100,210,120,24,24,dtbuf); 
+//			delay_ms(1000);		
+//		}
 		POINT_COLOR=BLUE;
 		LCD_ShowString(50,10,130,24,24,"present value"); //一刚开始，读取寄存器的值
 		
@@ -147,6 +150,7 @@ __align(4) u8 dtbuf[50];
 		sprintf((char *)dtbuf,"%x     ",TempIA); 
 		LCD_ShowString(100,180,120,24,24,dtbuf); 		
 		
+		RN8209_ReadData(SYSCON);//测试用，看寄存器配置是否正确。
 		
 		
 		

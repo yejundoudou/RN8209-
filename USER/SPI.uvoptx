@@ -172,9 +172,9 @@
         <Bp>
           <Number>0</Number>
           <Type>0</Type>
-          <LineNumber>658</LineNumber>
+          <LineNumber>463</LineNumber>
           <EnabledFlag>1</EnabledFlag>
-          <Address>134237400</Address>
+          <Address>134236220</Address>
           <ByteObject>0</ByteObject>
           <HtxType>0</HtxType>
           <ManyObjects>0</ManyObjects>
@@ -183,14 +183,14 @@
           <BreakIfRCount>1</BreakIfRCount>
           <Filename>E:\1鐢靛瓙绉戞妧鈥旇嚜宸卞啓鐨勭▼搴?0.0GitHub\RN8209-\HARDWARE\RN8209G_SPI\RN8209G_SPI.c</Filename>
           <ExecCommand></ExecCommand>
-          <Expression>\\SPI\../HARDWARE/RN8209G_SPI/RN8209G_SPI.c\658</Expression>
+          <Expression>\\SPI\../HARDWARE/RN8209G_SPI/RN8209G_SPI.c\463</Expression>
         </Bp>
         <Bp>
           <Number>1</Number>
           <Type>0</Type>
-          <LineNumber>633</LineNumber>
+          <LineNumber>454</LineNumber>
           <EnabledFlag>1</EnabledFlag>
-          <Address>134237318</Address>
+          <Address>134236206</Address>
           <ByteObject>0</ByteObject>
           <HtxType>0</HtxType>
           <ManyObjects>0</ManyObjects>
@@ -199,7 +199,55 @@
           <BreakIfRCount>1</BreakIfRCount>
           <Filename>E:\1鐢靛瓙绉戞妧鈥旇嚜宸卞啓鐨勭▼搴?0.0GitHub\RN8209-\HARDWARE\RN8209G_SPI\RN8209G_SPI.c</Filename>
           <ExecCommand></ExecCommand>
-          <Expression>\\SPI\../HARDWARE/RN8209G_SPI/RN8209G_SPI.c\633</Expression>
+          <Expression>\\SPI\../HARDWARE/RN8209G_SPI/RN8209G_SPI.c\454</Expression>
+        </Bp>
+        <Bp>
+          <Number>2</Number>
+          <Type>0</Type>
+          <LineNumber>67</LineNumber>
+          <EnabledFlag>1</EnabledFlag>
+          <Address>134218566</Address>
+          <ByteObject>0</ByteObject>
+          <HtxType>0</HtxType>
+          <ManyObjects>0</ManyObjects>
+          <SizeOfObject>0</SizeOfObject>
+          <BreakByAccess>0</BreakByAccess>
+          <BreakIfRCount>1</BreakIfRCount>
+          <Filename>E:\1鐢靛瓙绉戞妧鈥旇嚜宸卞啓鐨勭▼搴?0.0GitHub\RN8209-\USER\main.c</Filename>
+          <ExecCommand></ExecCommand>
+          <Expression>\\SPI\main.c\67</Expression>
+        </Bp>
+        <Bp>
+          <Number>3</Number>
+          <Type>0</Type>
+          <LineNumber>301</LineNumber>
+          <EnabledFlag>1</EnabledFlag>
+          <Address>134235740</Address>
+          <ByteObject>0</ByteObject>
+          <HtxType>0</HtxType>
+          <ManyObjects>0</ManyObjects>
+          <SizeOfObject>0</SizeOfObject>
+          <BreakByAccess>0</BreakByAccess>
+          <BreakIfRCount>1</BreakIfRCount>
+          <Filename>E:\1鐢靛瓙绉戞妧鈥旇嚜宸卞啓鐨勭▼搴?0.0GitHub\RN8209-\HARDWARE\RN8209G_SPI\RN8209G_SPI.c</Filename>
+          <ExecCommand></ExecCommand>
+          <Expression>\\SPI\../HARDWARE/RN8209G_SPI/RN8209G_SPI.c\301</Expression>
+        </Bp>
+        <Bp>
+          <Number>4</Number>
+          <Type>0</Type>
+          <LineNumber>328</LineNumber>
+          <EnabledFlag>1</EnabledFlag>
+          <Address>134235954</Address>
+          <ByteObject>0</ByteObject>
+          <HtxType>0</HtxType>
+          <ManyObjects>0</ManyObjects>
+          <SizeOfObject>0</SizeOfObject>
+          <BreakByAccess>0</BreakByAccess>
+          <BreakIfRCount>1</BreakIfRCount>
+          <Filename>E:\1鐢靛瓙绉戞妧鈥旇嚜宸卞啓鐨勭▼搴?0.0GitHub\RN8209-\HARDWARE\RN8209G_SPI\RN8209G_SPI.c</Filename>
+          <ExecCommand></ExecCommand>
+          <Expression>\\SPI\../HARDWARE/RN8209G_SPI/RN8209G_SPI.c\328</Expression>
         </Bp>
       </Breakpoint>
       <WatchWindow1>
@@ -257,6 +305,21 @@
           <count>10</count>
           <WinNumber>1</WinNumber>
           <ItemText>TempIA</ItemText>
+        </Ww>
+        <Ww>
+          <count>11</count>
+          <WinNumber>1</WinNumber>
+          <ItemText>AdjustSYSCON</ItemText>
+        </Ww>
+        <Ww>
+          <count>12</count>
+          <WinNumber>1</WinNumber>
+          <ItemText>Adjust_Parameter_Structure</ItemText>
+        </Ww>
+        <Ww>
+          <count>13</count>
+          <WinNumber>1</WinNumber>
+          <ItemText>Adjust_Parameter_Structure.AdjustSYSCON</ItemText>
         </Ww>
       </WatchWindow1>
       <MemoryWindow1>
