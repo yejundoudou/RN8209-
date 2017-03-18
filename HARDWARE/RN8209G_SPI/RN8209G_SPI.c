@@ -457,15 +457,20 @@ void RN8209_Parameter_Adjust(void)
 	Adjust_Parameter_TypeDef Adjust_Parameter_Structure;	
 	RN8209_WriteData(0xEA,0XE5);//写使能
 	
-//	Adjust_Parameter_Structure.AdjustSYSCON=0x000f;//（000f，关闭电流B，电压增益为4倍，电流A为16倍）
-//	Adjust_Parameter_Structure.AdjustSYSCON=0x0000;//（00H，关闭电流B，所有增益为1倍）
-	Adjust_Parameter_Structure.AdjustSYSCON=0x000C;//（000c，关闭电流B，电压增益为4倍，电流A为1倍）
+	Adjust_Parameter_Structure.AdjustSYSCON=0x0000;//（0000H，关闭电流B，电压增益为1倍，电流A为1倍）
+//	Adjust_Parameter_Structure.AdjustSYSCON=0x0001;//（0001H，关闭电流B，电压增益为1倍，电流A为2倍）
+//	Adjust_Parameter_Structure.AdjustSYSCON=0x0002;//（0002H，关闭电流B，电压增益为1倍，电流A为8倍）
+//	Adjust_Parameter_Structure.AdjustSYSCON=0x0003;//（0003，关闭电流B，电压增益为1倍，电流A为16倍）
+//	Adjust_Parameter_Structure.AdjustSYSCON=0x000C;//（000c，关闭电流B，电压增益为4倍，电流A为1倍）
+//  Adjust_Parameter_Structure.AdjustSYSCON=0x000f;//（000f，关闭电流B，电压增益为4倍，电流A为16倍）
 	Adjust_Parameter_Structure.AdjustEMUCON=0x1403;//（1403，电能读后清零，只累加正向，打开全部高通滤波器）
 //	Adjust_Parameter_Structure.AdjustHFConst=0X0B02;//这个是与PFCNT寄存器做比较，5A
-	Adjust_Parameter_Structure.AdjustHFConst=0X06E1;//这个是与PFCNT寄存器做比较,8A
+//	Adjust_Parameter_Structure.AdjustHFConst=0X06E1;//这个是与PFCNT寄存器做比较,8A
+	Adjust_Parameter_Structure.AdjustHFConst=0X1000;//这个是与PFCNT寄存器做比较,8A
 //	Adjust_Parameter_Structure.AdjustHFConst=(int)(16.1079*Vu*Vi*(10^11)/(EC*Un*Ib));
 	Adjust_Parameter_Structure.AdjustPStart=0x0060;//这是默认的
-	Adjust_Parameter_Structure.AdjustEMUCON2=0x0080;//功率及有效值更新速度为13.982HZ
+//	Adjust_Parameter_Structure.AdjustEMUCON2=0x0080;//（0080功率及有效值更新速度为13.982HZ）
+	Adjust_Parameter_Structure.AdjustEMUCON2=0x0000;//（0000功率及有效值更新速度为3.495HZ，默认）
 	
 	RN8209_WriteData(SYSCON,Adjust_Parameter_Structure.AdjustSYSCON);//B通道ADCON设置，ADC增益选择
 	RN8209_WriteData(EMUCON,Adjust_Parameter_Structure.AdjustEMUCON);//能量累加模式设置	

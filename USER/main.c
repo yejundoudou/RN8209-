@@ -31,8 +31,8 @@ u8 mode_key=0;
 
 __align(4) u8 dtbuf[50]; 
 
-
-
+u32 SPL_IA_reg ;//读adc值
+u32 SPL_U_reg ;
 //u8*len;
  int main(void)
  {	  
@@ -58,20 +58,17 @@ __align(4) u8 dtbuf[50];
 	LCD_ShowString(220,180,20,24,24,"A"); 
 	LCD_ShowString(220,210,20,24,24,"W");
 	 
-	LCD_ShowString(20,240,60,24,24,"Ku:"); 
-	LCD_ShowString(20,265,60,24,24,"Ki:"); 
+//	LCD_ShowString(20,240,60,24,24,"Ku:"); //先不用，先显示ADC的值
+//	LCD_ShowString(20,265,60,24,24,"Ki:"); //先不用，先显示ADC的值
 	LCD_ShowString(20,295,60,24,24,"Kp:"); 
 	 
 	 
 	RN8209G_SPI_config( );
 	RN8209_WriteData(0xEA,0XFA);//软件复位
 	delay_ms(50);
-	RN8209_ReadData(SYSCON);//测试用，看寄存器配置是否正确。
 	RN8209_WriteData(0xEA,0XE5);//写使能
 	delay_ms(50);
-	RN8209_ReadData(SYSCON);//测试用，看寄存器配置是否正确。
 	RN8209_Parameter_Adjust();//校表第一步，参数设置
-	RN8209_ReadData(SYSCON);//测试用，看寄存器配置是否正确。
 //		delay_ms(10);
 //		
 //		RN8209_ActivePower_Adjust();//校表第2.1步——————有功校正
@@ -81,7 +78,7 @@ __align(4) u8 dtbuf[50];
 //		delay_ms(10);
 //		
 //		RN8209_Rms_Adjust();//校表第3步——————有效值校正
-//		delay_ms(50);
+		delay_ms(50);
 //	 
 	while(1)
 	{
@@ -148,19 +145,35 @@ __align(4) u8 dtbuf[50];
 		
 		RN8209_PowerEnergyCount();
 		sprintf((char *)dtbuf,"%x     ",TempIA); 
-		LCD_ShowString(100,180,120,24,24,dtbuf); 		
+		LCD_ShowString(100,180,120,24,24,dtbuf); 
+//		delay_ms(50);delay_ms(50);delay_ms(50);delay_ms(50);delay_ms(50);delay_ms(50);delay_ms(50);delay_ms(50);delay_ms(50);delay_ms(50);delay_ms(50);
+//		delay_ms(50);delay_ms(50);delay_ms(50);delay_ms(50);delay_ms(50);delay_ms(50);delay_ms(50);delay_ms(50);delay_ms(50);delay_ms(50);delay_ms(50);		
+
+
+		LCD_ShowString(20,240,60,24,24,"U_adc"); //先不用，先显示ADC的值
+  	SPL_U_reg=RN8209_ReadData(SPL_U);
+		sprintf((char *)dtbuf,"%x       ",SPL_U_reg);
+		LCD_ShowString(140,240,60,24,24,dtbuf);
+
+		LCD_ShowString(20,265,60,24,24,"IA_adc:"); //先显示ADC的值
+		SPL_IA_reg=RN8209_ReadData(SPL_IA);//读电流通道A的ADC
+		sprintf((char *)dtbuf,"%x       ",SPL_IA_reg);
+		LCD_ShowString(140,265,60,24,24,dtbuf);
+		delay_ms(50);delay_ms(50);delay_ms(50);delay_ms(50);delay_ms(50);delay_ms(50);delay_ms(50);delay_ms(50);delay_ms(50);delay_ms(50);delay_ms(50);
+		delay_ms(50);delay_ms(50);delay_ms(50);delay_ms(50);delay_ms(50);delay_ms(50);delay_ms(50);delay_ms(50);delay_ms(50);delay_ms(50);delay_ms(50);
+
 		
-		RN8209_ReadData(SYSCON);//测试用，看寄存器配置是否正确。
+
 		
-		
+//SPL_IA_reg		
 		
 //		RN8209_ReadData(0x00,&data);//读系统寄存器
 //		delay_ms(10);
 //		RN8209_ReadData(0x02,&data);//脉冲频率
 //		delay_ms(10);
 //		RN8209_ReadData(0x0E,&data);//读电流通道A的有效值校正补偿
-//		delay_ms(10);
-//		RN8209_ReadData(0x20,&data);//有功脉冲计数
+////		delay_ms(10);
+////		RN8209_ReadData(0x20,&data);//有功脉冲计数
 //      delay_ms(10);
 //		RN8209_ReadData(0x22,&data);//电流A通道有效值
 //		delay_ms(10);        ·····
@@ -204,119 +217,7 @@ __align(4) u8 dtbuf[50];
 //		data_r[3]=0;
 		
 		
-		
-		
-		
-		
-		
-//		USART_SendData(USART1,data_r );
-//		
-		
 
-//			RN8209_ReadData(0x00,&data);
-//			delay_ms(10);
-//	  	RN8209_ReadData(0x01,&data);//！！！！！！！老版本
-//			delay_ms(10); 
-//			RN8209_ReadData(0x02,&data);
-//			delay_ms(10);        
-//			RN8209_ReadData(0x03,&data);
-//			delay_ms(10);      
-//			RN8209_ReadData(0x04,&data);
-//			delay_ms(10);        
-//			RN8209_ReadData(0x05,&data);
-//			delay_ms(10);        
-//			RN8209_ReadData(0x06,&data);
-//			delay_ms(10);        
-//			RN8209_ReadData(0x07,&data);
-//			delay_ms(10);        
-//			RN8209_ReadData(0x08,&data);
-//			delay_ms(10);        
-//			RN8209_ReadData(0x09,&data);
-//			delay_ms(10);        
-//			RN8209_ReadData(0x0a,&data);
-//			delay_ms(10);        
-//			RN8209_ReadData(0x0b,&data);
-//			delay_ms(10);        
-//			RN8209_ReadData(0x0c,&data);
-//			delay_ms(10);        
-//			RN8209_ReadData(0x0d,&data);
-//			delay_ms(10);        
-//			RN8209_ReadData(0x0e,&data);
-//			delay_ms(10);        
-//			RN8209_ReadData(0x0f,&data);
-//			delay_ms(10);        
-//			RN8209_ReadData(0x10,&data);
-//			delay_ms(10); 
-//			RN8209_ReadData(0x11,&data);
-//			delay_ms(10); 
-//	  	RN8209_ReadData(0x12,&data);
-//			delay_ms(10); 
-//	  	RN8209_ReadData(0x13,&data);
-//			delay_ms(10); 
-//	  	RN8209_ReadData(0x14,&data);
-//			delay_ms(10); 
-//			RN8209_ReadData(0x15,&data);//！！！！！！！老版本
-//			delay_ms(10); 
-//			RN8209_ReadData(0x16,&data);
-//			delay_ms(10);        
-//			RN8209_ReadData(0x17,&data);
-//			delay_ms(10);      
-//			RN8209_ReadData(0x20,&data);
-//			delay_ms(10);        
-//			RN8209_ReadData(0x21,&data);
-//			delay_ms(10);        
-//			RN8209_ReadData(0x22,&data);
-//			delay_ms(10);        
-//			RN8209_ReadData(0x23,&data);
-//			delay_ms(10);        
-//			RN8209_ReadData(0x24,&data);
-//			delay_ms(10);        
-//			RN8209_ReadData(0x25,&data);
-//			delay_ms(10);        
-//			RN8209_ReadData(0x26,&data);
-//			delay_ms(10);        
-//			RN8209_ReadData(0x27,&data);
-//			delay_ms(10);        
-//			RN8209_ReadData(0x28,&data);
-//			delay_ms(10);        
-//			RN8209_ReadData(0x29,&data);
-//			delay_ms(10);        
-//			RN8209_ReadData(0x2A,&data);
-//			delay_ms(10);        
-//			RN8209_ReadData(0x2B,&data);
-//			delay_ms(10);        
-//			RN8209_ReadData(0x2C,&data);
-//			delay_ms(10); 
-//			RN8209_ReadData(0x2D,&data);
-//			delay_ms(10); 
-//	  	RN8209_ReadData(0x30,&data);
-//			delay_ms(10); 
-//	  	RN8209_ReadData(0x31,&data);
-//			delay_ms(10); 
-//	  	RN8209_ReadData(0x32,&data);
-//			delay_ms(10);
-//			RN8209_ReadData(0x35,&data);
-//			delay_ms(10);        
-//			RN8209_ReadData(0x40,&data);
-//			delay_ms(10);        
-//			RN8209_ReadData(0x41,&data);
-//			delay_ms(10);        
-//			RN8209_ReadData(0x42,&data);
-//			delay_ms(10);        
-//			RN8209_ReadData(0x43,&data);
-//			delay_ms(10);        
-//			RN8209_ReadData(0x44,&data);
-//			delay_ms(10);        
-//			RN8209_ReadData(0x45,&data);
-//			delay_ms(10);        
-//			RN8209_ReadData(0x7f,&data);
-//			delay_ms(500); 
-//			
-//			delay_ms(1000);
-			
-////		 PBout(13)=1;
-//		SDI_H;
-//		
 	}
 }
  
